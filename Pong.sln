@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pong", "Pong\Pong\Pong.csproj", "{CE8EA26D-5CF7-4260-917F-DDDBE21C1FF5}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "PongContent", "Pong\PongContent\PongContent.contentproj", "{448A5719-9473-46A6-8005-EB72645F86BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE8EA26D-5CF7-4260-917F-DDDBE21C1FF5}.Debug|x86.ActiveCfg = Debug|x86
+		{CE8EA26D-5CF7-4260-917F-DDDBE21C1FF5}.Debug|x86.Build.0 = Debug|x86
+		{CE8EA26D-5CF7-4260-917F-DDDBE21C1FF5}.Release|x86.ActiveCfg = Release|x86
+		{CE8EA26D-5CF7-4260-917F-DDDBE21C1FF5}.Release|x86.Build.0 = Release|x86
+		{448A5719-9473-46A6-8005-EB72645F86BF}.Debug|x86.ActiveCfg = Debug|x86
+		{448A5719-9473-46A6-8005-EB72645F86BF}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
