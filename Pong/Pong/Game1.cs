@@ -1,3 +1,13 @@
+/*
+ * Basketball Pong
+ * by Frank McCown, Harding University
+ * Spring 2012
+ * 
+ * Sounds: Creative Commons Sampling Plus 1.0 License.
+ * http://www.freesound.org/samplesViewSingle.php?id=34201
+ * http://www.freesound.org/samplesViewSingle.php?id=12658
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,32 +26,38 @@ namespace Pong
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
 
-        // Ball sprite
-        Texture2D ballSprite;
+        private Ball ball;
+        private Paddle paddle;
 
-        // Ball location
-        Vector2 ballPosition = Vector2.Zero;
+        private SoundEffect swishSound;
+        private SoundEffect crashSound;
 
-        // Store some information about the sprite's motion
-        Vector2 ballSpeed = new Vector2(150, 150);
-
-        // Paddle sprite
-        Texture2D paddleSprite;
-
-        // Paddle location
-        Vector2 paddlePosition;
-
-        // Sound effects
-        SoundEffect swishSound;
-        SoundEffect crashSound;
+        // Used to delay between rounds 
+        private float delayTimer = 0;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            ball = new Ball(this);
+            paddle = new Paddle(this);
+
+            Components.Add(ball);
+            Components.Add(paddle);             
+
+            // Call Window_ClientSizeChanged when screen size is changed
+            this.Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
+        }
+
+        void Window_ClientSizeChanged(object sender, EventArgs e)
+        {
+            // Move paddle back onto screen if it's off
+            paddle.Y = GraphicsDevice.Viewport.Height - paddle.Height;
+            if (paddle.X + paddle.Width > GraphicsDevice.Viewport.Width)
+                paddle.X = GraphicsDevice.Viewport.Width - paddle.Width;
         }
 
         /// <summary>
@@ -52,15 +68,18 @@ namespace Pong
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // Make mouse visible
             IsMouseVisible = true;
+
+            // Set the window's title bar
+            Window.Title = "Basketball Pong!";
+
+            graphics.ApplyChanges();
+
+            // Don't allow ball to move just yet
+            ball.Enabled = false;  
+
             base.Initialize();
-
-            // Set the initial paddle location
-            paddlePosition = new Vector2(
-                graphics.GraphicsDevice.Viewport.Width / 2 - paddleSprite.Width / 2,
-                graphics.GraphicsDevice.Viewport.Height - paddleSprite.Height);
-
         }
 
         /// <summary>
@@ -69,13 +88,8 @@ namespace Pong
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            paddleSprite = Content.Load<Texture2D>("hand");
-            ballSprite = Content.Load<Texture2D>("basketball");
-            swishSound = Content.Load<SoundEffect>("swish");
-            crashSound = Content.Load<SoundEffect>("crash");
+            swishSound = Content.Load<SoundEffect>(@"Audio\swish");
+            crashSound = Content.Load<SoundEffect>(@"Audio\crash");
         }
 
         /// <summary>
@@ -95,59 +109,75 @@ namespace Pong
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            // Move the sprite by speed, scaled by elapsed time
-            ballPosition += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            int maxX = GraphicsDevice.Viewport.Width - ballSprite.Width;
-            int maxY = GraphicsDevice.Viewport.Height - ballSprite.Height;
-            
-            // Check for bounce
-            if (ballPosition.X > maxX || ballPosition.X < 0)
-                ballSpeed.X *= -1;
-            if (ballPosition.Y < 0)
-                ballSpeed.Y *= -1;
-            else if (ballPosition.Y > maxY)
+            // Press F to toggle full-screen mode
+            if (Keyboard.GetState().IsKeyDown(Keys.F))
             {
-                crashSound.Play();
-                // Ball hit the bottom of the screen, so reset the ball
-                ballPosition.Y = 0;
-                ballSpeed.X = 150;
-                ballSpeed.Y = 150;
+                graphics.IsFullScreen = !graphics.IsFullScreen;
+                graphics.ApplyChanges();
             }
 
-            // Collision Detection
-            Rectangle ballRect = 
-                new Rectangle((int)ballPosition.X, (int)ballPosition.Y,
-                    ballSprite.Width, ballSprite.Height);
+            // Wait until a second has passed before animating ball 
+            delayTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (delayTimer > 1)            
+                ball.Enabled = true;
+            
+            int maxX = GraphicsDevice.Viewport.Width - ball.Width;
+            int maxY = GraphicsDevice.Viewport.Height - ball.Height;
 
-            Rectangle handRect = 
-                new Rectangle((int)paddlePosition.X, (int)paddlePosition.Y,
-                    paddleSprite.Width, paddleSprite.Height);
+            // Check for bounce. Make sure to place ball back inside the screen
+            // or it could remain outside the screen on the next iteration and cause
+            // a back-and-forth bouncing logic error.
+            if (ball.X > maxX)
+            {
+                ball.ChangeHorzDirection();
+                ball.X = maxX;
+            }
+            else if (ball.X < 0)
+            {
+                ball.ChangeHorzDirection();
+                ball.X = 0;
+            }
 
-            if (ballRect.Intersects(handRect) && ballSpeed.Y > 0)
+            if (ball.Y < 0)
+            {
+                ball.ChangeVertDirection();
+                ball.Y = 0;
+            }
+            else if (ball.Y > maxY)
+            {
+                // Game over - reset ball
+                crashSound.Play();
+                ball.Reset();
+
+                // Reset timer and stop ball's Update() from executing
+                delayTimer = 0;
+                ball.Enabled = false;
+            }
+
+            // Collision?  Check rectangle intersection between ball and hand
+            if (ball.Boundary.Intersects(paddle.Boundary) && ball.SpeedY > 0)
             {
                 swishSound.Play();
-                
-                // Increase ball speed
-                ballSpeed.Y += 50;
-                if (ballSpeed.X < 0)
-                    ballSpeed.X -= 50;
-                else ballSpeed.X += 50;
 
-                // Send ball back up the screen
-                ballSpeed.Y *= -1;
+                // If hitting the side of the paddle the ball is coming toward, 
+                // switch the ball's horz direction
+                float ballMiddle = (ball.X + ball.Width) / 2;
+                float paddleMiddle = (paddle.X + paddle.Width) / 2;
+                if ((ballMiddle < paddleMiddle && ball.SpeedX > 0) ||
+                    (ballMiddle > paddleMiddle && ball.SpeedX < 0))
+                {
+                    ball.ChangeHorzDirection();
+                }
+
+                // Go back up the screen and speed up
+                ball.ChangeVertDirection();
+                ball.SpeedUp();                
             }
-
-            // Update the paddle's position
-            KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Right))
-                paddlePosition.X += 5;
-            else if (keyState.IsKeyDown(Keys.Left))
-                paddlePosition.X -= 5;
-
+            
             base.Update(gameTime);
         }
 
@@ -158,13 +188,7 @@ namespace Pong
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
-
-            // Draw Ball
-            spriteBatch.Begin();
-            spriteBatch.Draw(ballSprite, ballPosition, Color.White);
-            spriteBatch.Draw(paddleSprite, paddlePosition, Color.White);
-            spriteBatch.End();
-
+            
             base.Draw(gameTime);
         }
     }

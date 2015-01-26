@@ -2,39 +2,39 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>basketball.png</Source>
-      <Name>basketball</Name>
+      <Source>Images\basketball.png</Source>
+      <Name>Images\basketball</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\basketball.xnb</Output>
+      <Output>C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\Images\basketball.xnb</Output>
       <Time>2015-01-19T23:05:28.1800174-06:00</Time>
     </Item>
     <Item>
-      <Source>hand.png</Source>
-      <Name>hand</Name>
+      <Source>Images\hand.png</Source>
+      <Name>Images\hand</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\hand.xnb</Output>
+      <Output>C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\Images\hand.xnb</Output>
       <Time>2015-01-19T23:05:38.3193705-06:00</Time>
     </Item>
     <Item>
-      <Source>crash.wav</Source>
-      <Name>crash</Name>
+      <Source>Audio\crash.wav</Source>
+      <Name>Audio\crash</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\crash.xnb</Output>
+      <Output>C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb</Output>
       <Time>2015-01-19T23:05:57.8057202-06:00</Time>
     </Item>
     <Item>
-      <Source>swish.wav</Source>
-      <Name>swish</Name>
+      <Source>Audio\swish.wav</Source>
+      <Name>Audio\swish</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\swish.xnb</Output>
+      <Output>C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb</Output>
       <Time>2015-01-19T23:05:48.6961019-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>

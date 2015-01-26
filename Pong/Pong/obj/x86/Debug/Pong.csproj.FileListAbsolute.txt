@@ -4,7 +4,7 @@ C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\obj\x
 C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\obj\x86\Debug\Pong.exe
 C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\obj\x86\Debug\Pong.pdb
-C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\basketball.xnb
-C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\hand.xnb
-C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\crash.xnb
-C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\swish.xnb
+C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\Images\basketball.xnb
+C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\Images\hand.xnb
+C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb
+C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb
