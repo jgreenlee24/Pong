@@ -17,20 +17,19 @@ namespace Pong
     /// </summary>
     public class Paddle : Microsoft.Xna.Framework.DrawableGameComponent
     {
-        #region Private Members
-        private SpriteBatch spriteBatch;
-        private ContentManager contentManager;
+        #region protected Members
+        protected SpriteBatch spriteBatch;
+        protected ContentManager contentManager;
 
         // Paddle sprite
-        private Texture2D paddleSprite;
+        protected Texture2D paddleSprite;
 
         // Paddle location
-        private Vector2 paddlePosition;
+        protected Vector2 paddlePosition;
 
-        private const float DEFAULT_X_SPEED = 250;
+        protected const float DEFAULT_X_SPEED = 250;
 
         #endregion
-
         #region Properties
 
         /// <summary>
@@ -82,7 +81,7 @@ namespace Pong
         }
 
         #endregion
-
+        #region Code
         public Paddle(Game game)
             : base(game)
         {
@@ -96,11 +95,6 @@ namespace Pong
         public override void Initialize()
         {
             base.Initialize();
-
-            // Make sure base.Initialize() is called before this or handSprite will be null
-            X = (GraphicsDevice.Viewport.Width - Width) / 2;
-            Y = GraphicsDevice.Viewport.Height - Height;
-
             Speed = DEFAULT_X_SPEED;
         }
 
@@ -116,31 +110,6 @@ namespace Pong
         }
 
         /// <summary>
-        /// Allows the game component to update itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public override void Update(GameTime gameTime)
-        {
-            // Scale the movement based on time
-            float moveDistance = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            // Move paddle, but don't allow movement off the screen
-
-            KeyboardState newKeyState = Keyboard.GetState();
-            if (newKeyState.IsKeyDown(Keys.Right) && X + paddleSprite.Width
-                + moveDistance <= GraphicsDevice.Viewport.Width)
-            {
-                X += moveDistance;
-            }
-            else if (newKeyState.IsKeyDown(Keys.Left) && X - moveDistance >= 0)
-            {
-                X -= moveDistance;
-            }
-            
-            base.Update(gameTime);
-        }
-
-        /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
@@ -152,5 +121,6 @@ namespace Pong
 
             base.Draw(gameTime);
         }
+        #endregion
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Pong
 {
-    /// <summary>
+    /// <summary> 
     /// This is a game component that implements IUpdateable.
     /// </summary>
     public class Ball : Microsoft.Xna.Framework.DrawableGameComponent
@@ -122,16 +122,8 @@ namespace Pong
             ballSpeed.X = DEFAULT_X_SPEED;
             ballSpeed.Y = DEFAULT_Y_SPEED;
 
-            ballPosition.Y = 0;
-
-            // Make sure ball is not positioned off the screen
-            if (ballPosition.X < 0)
-                ballPosition.X = 0;
-            else if (ballPosition.X + ballSprite.Width > GraphicsDevice.Viewport.Width)
-            {
-                ballPosition.X = GraphicsDevice.Viewport.Width - ballSprite.Width;
-                ballSpeed.Y *= -1;
-            }
+            ballPosition.Y = GraphicsDevice.Viewport.Height / 2;
+            ballPosition.X = GraphicsDevice.Viewport.Width / 2;
         }
 
         /// <summary>
