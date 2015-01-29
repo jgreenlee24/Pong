@@ -8,3 +8,14 @@ C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x
 C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\Images\hand.xnb
 C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb
 C:\Users\Justin\Documents\Harding\COMP 475 Game Programming\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb
+G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb
+G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb
+G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\bin\x86\Debug\Pong.exe
+G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\bin\x86\Debug\Pong.pdb
+G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\obj\x86\Debug\Pong.csprojResolveAssemblyReference.cache
+G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\obj\x86\Debug\Pong.exe
+G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\obj\x86\Debug\Pong.pdb
+G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\bin\x86\Debug\Content\Images\comp-paddle.xnb
+G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\bin\x86\Debug\Content\Images\paddle.xnb
+G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\bin\x86\Debug\Content\Images\ball.xnb

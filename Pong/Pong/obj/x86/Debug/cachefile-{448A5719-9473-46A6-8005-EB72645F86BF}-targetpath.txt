@@ -1,4 +1,5 @@
-Content\Images\basketball.xnb
-Content\Images\hand.xnb
 Content\Audio\crash.xnb
 Content\Audio\swish.xnb
+Content\Images\comp-paddle.xnb
+Content\Images\paddle.xnb
+Content\Images\ball.xnb

@@ -17,7 +17,6 @@ namespace Pong
         public PaddleHuman(Game game)
             : base(game)
         {
-
         }
         #region Code
         /// <summary>
@@ -28,7 +27,7 @@ namespace Pong
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\hand");
+            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\paddle");
         }
 
         /// <summary>
@@ -43,14 +42,14 @@ namespace Pong
             // Move paddle, but don't allow movement off the screen
 
             KeyboardState newKeyState = Keyboard.GetState();
-            if (newKeyState.IsKeyDown(Keys.Up) && Y - moveDistance >= 0 )
+            if (newKeyState.IsKeyDown(Keys.Left) && X - moveDistance >= 0 )
             {
-                Y -= moveDistance;
+                X -= moveDistance;
             }
-            else if (newKeyState.IsKeyDown(Keys.Down) && Y + paddleSprite.Height
-                + moveDistance <= GraphicsDevice.Viewport.Height)
+            else if (newKeyState.IsKeyDown(Keys.Right) && X + paddleSprite.Width
+                + moveDistance <= GraphicsDevice.Viewport.Width)
             {
-                Y += moveDistance;
+                X += moveDistance;
             }
 
             base.Update(gameTime);

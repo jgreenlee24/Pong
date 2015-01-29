@@ -80,15 +80,19 @@ namespace Pong
 
             graphics.ApplyChanges();
 
-            // Don't allow ball to move just yet
-            ball.Enabled = false;  
+            // Initialize all components and load content
+            base.Initialize();
+
+            // Initialize ball position
+            ball.X = GraphicsDevice.Viewport.Width / 2 - ball.Width / 2;
+            ball.Y = GraphicsDevice.Viewport.Height / 2 - ball.Height / 2;
+
+            // Randomly select ball direction and speed
 
             // Initialize paddle positions
-            paddle.X = 0;
-            comp_paddle.Y = paddle.Y = GraphicsDevice.Viewport.Height / 2;
-            comp_paddle.X = GraphicsDevice.Viewport.Width - 100;
-
-            base.Initialize();
+            comp_paddle.Y = 0;
+            paddle.Y = GraphicsDevice.Viewport.Height - paddle.Height;
+            comp_paddle.X = paddle.X = GraphicsDevice.Viewport.Width / 2 - paddle.Width / 2;
         }
 
         /// <summary>
@@ -131,29 +135,16 @@ namespace Pong
 
             // Wait until a second has passed before animating ball 
             delayTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (delayTimer > 1)            
+            if (delayTimer > 1)
                 ball.Enabled = true;
-            
+
             int maxX = GraphicsDevice.Viewport.Width - ball.Width;
             int maxY = GraphicsDevice.Viewport.Height - ball.Height;
 
-            // Check for bounce. Make sure to place ball back inside the screen
-            // or it could remain outside the screen on the next iteration and cause
-            // a back-and-forth bouncing logic error.
-            if (ball.Y < 0)
+            // Score! Reset Ball and Timer
+            if (ball.Y < 0 || ball.Y > maxY)
             {
-                ball.ChangeVertDirection();
-                ball.Y = 0;
-            }
-            else if (ball.Y > maxY)
-            {
-                ball.ChangeVertDirection();
-                ball.Y = maxY;
-            }
-            else if (ball.X > maxX || ball.X < 0)
-            {
-                // Game over - reset ball
-                crashSound.Play();
+                // Score! - reset ball
                 ball.Reset();
 
                 // Reset timer and stop ball's Update() from executing
@@ -161,14 +152,19 @@ namespace Pong
                 ball.Enabled = false;
             }
 
-            // Collision?  Check rectangle intersection between ball and hand
+            // Collision with Wall
+            if (ball.X < 0 || ball.X > maxX)
+            {
+                ball.ChangeHorzDirection();
+            }
+
+            // Collision with Paddle
             if (ball.Boundary.Intersects(paddle.Boundary) && ball.SpeedY > 0 ||
                 ball.Boundary.Intersects(comp_paddle.Boundary) && ball.SpeedY < 0)
             {
-                swishSound.Play();
+                //swishSound.Play();
 
-                // If hitting the side of the paddle the ball is coming toward, 
-                // switch the ball's horz direction
+                // Enable Reflection
                 float ballMiddle = (ball.X + ball.Width) / 2;
                 float paddleMiddle = (paddle.X + paddle.Width) / 2;
                 float compMiddle = (comp_paddle.X + comp_paddle.Y) / 2;
@@ -177,24 +173,23 @@ namespace Pong
                     (ballMiddle < compMiddle && ball.SpeedX > 0) ||
                     (ballMiddle > compMiddle && ball.SpeedX < 0))
                 {
-                    ball.ChangeVertDirection();
+                    ball.ChangeHorzDirection();
                 }
-
-                // Redirect ball horizontally
-                ball.ChangeHorzDirection();
-                ball.SpeedUp();                
+                
+                // Redirect ball vertically - collided with paddle
+                ball.ChangeVertDirection();
+                ball.SpeedUp();
             }
-            
+
             base.Update(gameTime);
         }
-
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.Black);
             
             base.Draw(gameTime);
         }

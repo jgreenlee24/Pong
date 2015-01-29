@@ -62,7 +62,7 @@ namespace Pong
         }
 
         /// <summary>
-        /// Gets or sets the X position of the ball.
+        /// Gets or sets the X position of the 
         /// </summary>
         public float X
         {
@@ -71,7 +71,7 @@ namespace Pong
         }
 
         /// <summary>
-        /// Gets or sets the Y position of the ball.
+        /// Gets or sets the Y position of the 
         /// </summary>
         public float Y
         {
@@ -96,7 +96,7 @@ namespace Pong
         }
 
         /// <summary>
-        /// Gets the bounding rectangle of the ball.
+        /// Gets the bounding rectangle of the 
         /// </summary>
         public Rectangle Boundary
         {
@@ -112,6 +112,7 @@ namespace Pong
             : base(game)
         {
             contentManager = new ContentManager(game.Services);
+
         }
 
         /// <summary>
@@ -179,7 +180,7 @@ namespace Pong
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Load the texture if it exists
-            ballSprite = contentManager.Load<Texture2D>(@"Content\Images\basketball");
+            ballSprite = contentManager.Load<Texture2D>(@"Content\Images\ball");
         }
 
         /// <summary>
@@ -190,7 +191,7 @@ namespace Pong
         {
             // Move the sprite by speed, scaled by elapsed time.
             ballPosition += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
+            
             base.Update(gameTime);
         }
 

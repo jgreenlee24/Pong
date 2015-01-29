@@ -29,7 +29,7 @@ namespace Pong
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\hand");
+            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\comp-paddle");
         }
 
         /// <summary>
@@ -42,13 +42,13 @@ namespace Pong
             float moveDistance = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             // Move paddle, but don't allow movement off the screen
-            if (ball.Y < Y && Y > 0)
+            if (ball.X < X && X > 0)
             {
-                Y -= moveDistance;
+                X -= moveDistance;
             }
-            else if (ball.Y > Y && Y < (GraphicsDevice.Viewport.Height - Height))
+            else if (ball.X > X && X < (GraphicsDevice.Viewport.Width - Width))
             {
-                Y += moveDistance;
+                X += moveDistance;
             }
 
             base.Update(gameTime);
