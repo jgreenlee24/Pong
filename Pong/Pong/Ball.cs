@@ -39,6 +39,10 @@ namespace Pong
         // Ball location
         Vector2 ballPosition;
 
+        // Ball's Rectangles
+        int frame;
+        Rectangle sourceRec;
+
         // Ball's motion
         Vector2 ballSpeed = new Vector2(DEFAULT_X_SPEED, DEFAULT_Y_SPEED);
         #endregion
@@ -177,6 +181,8 @@ namespace Pong
         {
             ballPosition.X = INIT_X_POS;
             ballPosition.Y = INIT_Y_POS;
+            sourceRec = new Rectangle(0, 0, 384 / 12, 64 / 2);
+            frame = 0;
 
             base.Initialize();
         }
@@ -190,7 +196,7 @@ namespace Pong
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Load the texture if it exists
-            ballSprite = contentManager.Load<Texture2D>(@"Content\Images\ball");
+            ballSprite = contentManager.Load<Texture2D>(@"Content\Images\fireball");
         }
 
         /// <summary>
@@ -201,6 +207,13 @@ namespace Pong
         {
             // Move the sprite by speed, scaled by elapsed time.
             ballPosition += ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            // Update frame
+            if (frame == 12) frame = 0;
+            else frame++;
+
+            sourceRec.X = (384 / 12) * (frame % 6);
+            sourceRec.Y = (64 / 2) * (frame / 6);
             
             base.Update(gameTime);
         }
@@ -214,7 +227,8 @@ namespace Pong
             base.Draw(gameTime);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(ballSprite, ballPosition, Color.White);
+            spriteBatch.Draw(ballSprite, ballPosition, sourceRec, Color.White);
+            
             spriteBatch.End();
         }
     }
