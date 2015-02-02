@@ -29,7 +29,7 @@ namespace Pong
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\comp-paddle");
+            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\computer_paddle");
         }
 
         /// <summary>

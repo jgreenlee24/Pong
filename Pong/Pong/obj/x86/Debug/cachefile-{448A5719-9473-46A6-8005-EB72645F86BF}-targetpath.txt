@@ -1,5 +1,6 @@
 Content\Audio\crash.xnb
 Content\Audio\swish.xnb
-Content\Images\comp-paddle.xnb
-Content\Images\paddle.xnb
 Content\Images\ball.xnb
+Content\Images\computer_paddle.xnb
+Content\Images\player_paddle.xnb
+Content\scoreFont.xnb

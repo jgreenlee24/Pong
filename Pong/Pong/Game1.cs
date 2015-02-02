@@ -31,6 +31,12 @@ namespace Pong
         private Ball ball;
         private PaddleHuman paddle;
         private PaddleComputer comp_paddle;
+        private SpriteBatch spriteBatch;
+
+        //Keep track of the player and computer scores
+        private int playerScore;
+        private int computerScore;
+        private SpriteFont font;
 
         private SoundEffect swishSound;
         private SoundEffect crashSound;
@@ -75,6 +81,10 @@ namespace Pong
             // Make mouse visible
             IsMouseVisible = true;
 
+            //Reset the score to 0-0
+            playerScore = 0;
+            computerScore = 0;
+
             // Set the window's title bar
             Window.Title = "Basketball Pong!";
 
@@ -101,6 +111,8 @@ namespace Pong
         /// </summary>
         protected override void LoadContent()
         {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = Content.Load<SpriteFont>("scoreFont");
             swishSound = Content.Load<SoundEffect>(@"Audio\swish");
             crashSound = Content.Load<SoundEffect>(@"Audio\crash");
         }
@@ -144,6 +156,19 @@ namespace Pong
             // Score! Reset Ball and Timer
             if (ball.Y < 0 || ball.Y > maxY)
             {
+                //Increment the score accordingly
+                if (ball.Y < 0)
+                {
+                    playerScore++;
+                }
+                else
+                {
+                    computerScore++;
+                }
+
+                //Update the current scores to the screen
+
+
                 // Score! - reset ball
                 ball.Reset();
 
@@ -183,13 +208,25 @@ namespace Pong
 
             base.Update(gameTime);
         }
+
+        /// <summary>
+        /// Draws the player/computer score to the window
+        /// </summary>
+        private void DrawText()
+        {   
+            spriteBatch.DrawString(font, "Player: " + playerScore.ToString() + "\nComputer: " + computerScore.ToString(), new Vector2(10, 10), Color.White);
+        }
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
             GraphicsDevice.Clear(Color.Black);
+            DrawText();
+            spriteBatch.End();
             
             base.Draw(gameTime);
         }

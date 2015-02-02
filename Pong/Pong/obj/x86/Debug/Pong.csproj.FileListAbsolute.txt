@@ -19,3 +19,15 @@ G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\obj\x86\Debug\P
 G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\bin\x86\Debug\Content\Images\comp-paddle.xnb
 G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\bin\x86\Debug\Content\Images\paddle.xnb
 G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\bin\x86\Debug\Content\Images\ball.xnb
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\obj\x86\Debug\Pong.exe
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\obj\x86\Debug\Pong.pdb
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\ball.xnb
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\computer_paddle.xnb
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\player_paddle.xnb
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Pong.exe
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Pong.pdb
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\obj\x86\Debug\Pong.csprojResolveAssemblyReference.cache
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\scoreFont.xnb

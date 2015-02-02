@@ -71,12 +71,12 @@ namespace Pong
         /// <summary>
         /// Gets the bounding rectangle of the paddle.
         /// </summary>
-        public Rectangle Boundary
+        public BoundingSphere Boundary
         {
             get
             {
-                return new Rectangle((int)paddlePosition.X, (int)paddlePosition.Y,
-                    paddleSprite.Width, paddleSprite.Height);
+                return new BoundingSphere(new Vector3((int)paddlePosition.X, (int)paddlePosition.Y, 0), (float)paddleSprite.Height / 2);
+                //return new Rectangle((int)paddlePosition.X, (int)paddlePosition.Y, paddleSprite.Width, paddleSprite.Height);
             }
         }
 

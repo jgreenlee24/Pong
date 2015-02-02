@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+//using System.Windows.Shapes;
 
 
 namespace Pong
@@ -98,7 +99,7 @@ namespace Pong
         /// <summary>
         /// Gets the bounding rectangle of the 
         /// </summary>
-        public Rectangle Boundary
+        public Rectangle Boundary2
         {
             get
             {
@@ -106,6 +107,15 @@ namespace Pong
                     ballSprite.Width, ballSprite.Height);
             }
         }
+
+        public BoundingSphere Boundary
+        {
+            get
+            {
+                return new BoundingSphere(new Vector3((int)ballPosition.X, (int)ballPosition.Y, 0), (float)ballSprite.Height / 2);
+            }
+        }
+
         #endregion
 
         public Ball(Game game)
