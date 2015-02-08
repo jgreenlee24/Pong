@@ -64,15 +64,15 @@ namespace Pong
                 }
             }
 
-
             // keyboard-control
             KeyboardState newKeyState = Keyboard.GetState();
-            if (newKeyState.IsKeyDown(Keys.Left) && X - moveDistance >= 0 )
+            if ((newKeyState.IsKeyDown(Keys.Left) || newKeyState.IsKeyDown(Keys.A)) &&
+                X - moveDistance >= 0 )
             {
                 X -= moveDistance;
             }
-            else if (newKeyState.IsKeyDown(Keys.Right) && X + paddleSprite.Width
-                + moveDistance <= GraphicsDevice.Viewport.Width)
+            else if ((newKeyState.IsKeyDown(Keys.Right) || newKeyState.IsKeyDown(Keys.D)) &&
+                X + paddleSprite.Width + moveDistance <= GraphicsDevice.Viewport.Width)
             {
                 X += moveDistance;
             }
