@@ -2,24 +2,6 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>Audio\crash.wav</Source>
-      <Name>Audio\crash</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb</Output>
-      <Time>2015-02-02T14:00:49.1513722-08:00</Time>
-    </Item>
-    <Item>
-      <Source>Audio\swish.wav</Source>
-      <Name>Audio\swish</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb</Output>
-      <Time>2015-02-02T14:00:49.1533728-08:00</Time>
-    </Item>
-    <Item>
       <Source>Images\ball.png</Source>
       <Name>Images\ball</Name>
       <Importer>TextureImporter</Importer>
@@ -63,6 +45,33 @@
       <Options>None</Options>
       <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\fireball.xnb</Output>
       <Time>2015-02-02T14:27:57.1002702-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\pong.wav</Source>
+      <Name>Audio\pong</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\pong.xnb</Output>
+      <Time>2015-02-08T07:30:17.3030156-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\playerScore.wav</Source>
+      <Name>Audio\playerScore</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\playerScore.xnb</Output>
+      <Time>2015-02-08T07:37:00.5188637-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\score.wav</Source>
+      <Name>Audio\score</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\score.xnb</Output>
+      <Time>2015-02-08T07:35:57.9922995-08:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -1,7 +1,8 @@
-Content\Audio\crash.xnb
-Content\Audio\swish.xnb
 Content\Images\ball.xnb
 Content\Images\computer_paddle.xnb
 Content\Images\player_paddle.xnb
 Content\scoreFont.xnb
 Content\Images\fireball.xnb
+Content\Audio\pong.xnb
+Content\Audio\playerScore.xnb
+Content\Audio\score.xnb

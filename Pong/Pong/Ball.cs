@@ -104,8 +104,8 @@ namespace Pong
         {
             get
             {
-                return new Rectangle((int)ballPosition.X, (int)ballPosition.Y,
-                    ballSprite.Width - 20, ballSprite.Height - 35);
+                return new Rectangle((int)ballPosition.X, (int)ballPosition.Y + 10,
+                    ballSprite.Width - 20, ballSprite.Height - 45);
             }
         }
 

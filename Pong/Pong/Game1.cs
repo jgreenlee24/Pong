@@ -43,13 +43,14 @@ namespace Pong
         private float ballSpeedY;
 
         //Keep track of the player and computer scores
-        private int playerScore;
+        private int myScore;
         private int computerScore;
         private SpriteFont font;
 
-        private SoundEffect swishSound;
-        private SoundEffect crashSound;
-
+        private SoundEffect pongSound;
+        private SoundEffect scoreSound;
+        private SoundEffect compScoreSound;
+        
         // Used to delay between rounds 
         private float delayTimer = 0;
 
@@ -89,7 +90,7 @@ namespace Pong
         {
             // Initialize local variables
             IsMouseVisible = true;
-            playerScore = 0;
+            myScore = 0;
             computerScore = 0;
 
             // Set the window's title bar
@@ -121,8 +122,9 @@ namespace Pong
             scoreRecord = new SpriteBatch(GraphicsDevice);
             credits = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("scoreFont");
-            swishSound = Content.Load<SoundEffect>(@"Audio\swish");
-            crashSound = Content.Load<SoundEffect>(@"Audio\crash");
+            pongSound = Content.Load<SoundEffect>(@"Audio\pong");
+            scoreSound = Content.Load<SoundEffect>(@"Audio\playerScore");
+            compScoreSound = Content.Load<SoundEffect>(@"Audio\score");
         }
 
         /// <summary>
@@ -209,9 +211,16 @@ namespace Pong
             if (ball.Y < 0 || ball.Y > maxY)
             {
                 //Increment the score accordingly
-                if (ball.Y < 0) playerScore++;
-                else computerScore++;
-
+                if (ball.Y < 0)
+                {
+                    myScore++;
+                    scoreSound.Play();
+                }
+                else
+                {
+                    computerScore++;
+                    compScoreSound.Play();
+                }
                 // Score! - reset ball
                 ball.Reset();
 
@@ -230,7 +239,7 @@ namespace Pong
             if (ball.Boundary.Intersects(paddle.Boundary) && ball.SpeedY > 0 ||
                 ball.Boundary.Intersects(comp_paddle.Boundary) && ball.SpeedY < 0)
             {
-                //swishSound.Play();
+                pongSound.Play();
 
                 // Enable Reflection
                 float ballMiddle = (ball.X + ball.Width) / 2;
@@ -257,7 +266,7 @@ namespace Pong
         /// </summary>
         private void DrawText()
         {   
-            scoreRecord.DrawString(font, "Player: " + playerScore.ToString() + "\nComputer: " + computerScore.ToString(), new Vector2(10, 10), Color.White);
+            scoreRecord.DrawString(font, "Player: " + myScore.ToString() + "\nComputer: " + computerScore.ToString(), new Vector2(10, 10), Color.White);
         }
 
         /// <summary>
