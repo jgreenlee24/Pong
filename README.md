@@ -27,4 +27,4 @@
 #Scoring
 #Collision detection with ball/paddle (beginning)
 
-#50/50 Effort ?
+#50/50 Effort
