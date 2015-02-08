@@ -29,6 +29,7 @@ namespace Pong
         // Initial location of the ball
         private const float INIT_X_POS = 80;
         private const float INIT_Y_POS = 0;
+        public bool wireframe = false;
 
         // Increase in speed each hit
         private const float INCREASE_SPEED = 50;
@@ -42,6 +43,7 @@ namespace Pong
         // Ball's Rectangles
         int frame;
         Rectangle sourceRec;
+        Rectangle bounds;
 
         // Ball's motion
         Vector2 ballSpeed = new Vector2(DEFAULT_X_SPEED, DEFAULT_Y_SPEED);
@@ -104,8 +106,9 @@ namespace Pong
         {
             get
             {
-                return new Rectangle((int)ballPosition.X, (int)ballPosition.Y + 10,
-                    ballSprite.Width - 20, ballSprite.Height - 45);
+                bounds = new Rectangle((int)ballPosition.X + 5, (int)ballPosition.Y + 5,
+                    ballSprite.Width / 12 - 10, ballSprite.Height - 40);
+                return bounds;
             }
         }
 
@@ -217,6 +220,20 @@ namespace Pong
 
             spriteBatch.Begin();
             spriteBatch.Draw(ballSprite, ballPosition, sourceRec, Color.White);
+
+            Texture2D SimpleTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            Int32[] pixel = { 0xFFFFFF }; // White. 0xFF is Red, 0xFF0000 is Blue
+            SimpleTexture.SetData<Int32>(pixel, 0, SimpleTexture.Width * SimpleTexture.Height);
+
+            if (wireframe)
+            {
+                Color color = Color.White;
+                spriteBatch.Draw(SimpleTexture, new Rectangle(bounds.Left, bounds.Top, bounds.Width, 1), color);
+                spriteBatch.Draw(SimpleTexture, new Rectangle(bounds.Left, bounds.Bottom, bounds.Width, 1), color);
+                spriteBatch.Draw(SimpleTexture, new Rectangle(bounds.Left, bounds.Top, 1, bounds.Height), color);
+                spriteBatch.Draw(SimpleTexture, new Rectangle(bounds.Right, bounds.Top, 1, bounds.Height + 1), color);
+            }
+
             spriteBatch.End();
         }
     }

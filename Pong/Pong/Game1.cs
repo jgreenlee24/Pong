@@ -183,6 +183,7 @@ namespace Pong
             {
                     paddle.wireframe = true;
                     comp_paddle.wireframe = true;
+                    ball.wireframe = true;
             }
 
             // Disable mouse visibility - enable mouse-control

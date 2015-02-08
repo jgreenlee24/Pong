@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\ball.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\ball.xnb</Output>
+      <Time>2015-02-02T14:00:49.1543605-08:00</Time>
     </Item>
     <Item>
       <Source>Images\computer_paddle.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\computer_paddle.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\computer_paddle.xnb</Output>
+      <Time>2015-01-28T17:59:33.1247314-08:00</Time>
     </Item>
     <Item>
       <Source>Images\player_paddle.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\player_paddle.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\player_paddle.xnb</Output>
+      <Time>2015-01-28T17:41:15.0170494-08:00</Time>
     </Item>
     <Item>
       <Source>Images\fireball.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\fireball.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\fireball.xnb</Output>
+      <Time>2015-02-02T14:27:57.1002702-08:00</Time>
     </Item>
     <Item>
       <Source>scoreFont.spritefont</Source>
@@ -43,49 +43,76 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\scoreFont.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\scoreFont.xnb</Output>
+      <Time>2015-02-02T14:00:49.1663769-08:00</Time>
     </Item>
-    <BuildSuccessful>false</BuildSuccessful>
+    <Item>
+      <Source>Audio\pong.wav</Source>
+      <Name>Audio\pong</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\pong.xnb</Output>
+      <Time>2015-02-08T07:30:17.3030156-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\playerScore.wav</Source>
+      <Name>Audio\playerScore</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\playerScore.xnb</Output>
+      <Time>2015-02-08T07:37:00.5188637-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\score.wav</Source>
+      <Name>Audio\score</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\score.xnb</Output>
+      <Time>2015-02-08T07:35:57.9922995-08:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{448A5719-9473-46A6-8005-EB72645F86BF}</ContentProjectGUID>
       <TargetPlatform>Windows</TargetPlatform>
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Tyler\Documents\GitHub\Pong\Pong\PongContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\PongContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2011-09-01T17:22:30-05:00</Value>
+        <Value>2011-09-01T17:22:30-07:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2011-09-01T17:22:30-05:00</Value>
+        <Value>2011-09-01T17:22:30-07:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2011-09-01T17:22:30-05:00</Value>
+        <Value>2011-09-01T17:22:30-07:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2011-09-01T17:22:30-05:00</Value>
+        <Value>2011-09-01T17:22:30-07:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2011-09-01T17:22:30-05:00</Value>
+        <Value>2011-09-01T17:22:30-07:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2011-09-01T17:22:30-05:00</Value>
+        <Value>2011-09-01T17:22:30-07:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2015-02-08T16:16:04.8752779-06:00</Value>
+        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2015-01-28T17:02:26.6277898-08:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

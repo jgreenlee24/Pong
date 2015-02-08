@@ -76,7 +76,7 @@ namespace Pong
             get
             {
                 bounds = new Rectangle((int)paddlePosition.X, (int)paddlePosition.Y,
-                    paddleSprite.Width, paddleSprite.Height);
+                    paddleSprite.Width, paddleSprite.Height - 10);
                 return bounds;
             }
         }
@@ -121,7 +121,6 @@ namespace Pong
             spriteBatch.Draw(paddleSprite, paddlePosition, Color.White);
 
             Texture2D SimpleTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-
             Int32[] pixel = { 0xFFFFFF }; // White. 0xFF is Red, 0xFF0000 is Blue
             SimpleTexture.SetData<Int32>(pixel, 0, SimpleTexture.Width * SimpleTexture.Height);
 
