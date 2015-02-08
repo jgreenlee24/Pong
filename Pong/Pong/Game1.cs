@@ -33,6 +33,10 @@ namespace Pong
         private PaddleHuman paddle;
         private PaddleComputer comp_paddle;
         private Obstacle brick;
+        private Obstacle brick2;
+        private Obstacle brick3;
+        private Obstacle brick4;
+        private Obstacle brick5;
         private SpriteBatch scoreRecord;
         private SpriteBatch credits;
         private bool paused = false;
@@ -66,12 +70,16 @@ namespace Pong
             paddle = new PaddleHuman(this);
             comp_paddle = new PaddleComputer(this);
             brick = new Obstacle(this);
+            brick2 = new Obstacle(this);
+            brick3 = new Obstacle(this);
 
             Components.Add(ball);
             Components.Add(ball2);
             Components.Add(paddle);
             Components.Add(comp_paddle);
             Components.Add(brick);
+            Components.Add(brick2);
+            Components.Add(brick3);
             comp_paddle.ball = Components[0] as Ball;
             comp_paddle.ball2 = Components[1] as Ball;
 
@@ -120,8 +128,12 @@ namespace Pong
             comp_paddle.Y = 0;
             paddle.Y = GraphicsDevice.Viewport.Height - paddle.Height;
             comp_paddle.X = paddle.X = GraphicsDevice.Viewport.Width / 2 - paddle.Width / 2;
-            brick.Y = GraphicsDevice.Viewport.Height / 2 + 50;
-            brick.X = GraphicsDevice.Viewport.Width / 2;
+            brick.Y = GraphicsDevice.Viewport.Height / 2;
+            brick.X = GraphicsDevice.Viewport.Width / 2 + 150;
+            brick2.Y = GraphicsDevice.Viewport.Height / 2;
+            brick2.X = GraphicsDevice.Viewport.Width / 2;
+            brick3.Y = GraphicsDevice.Viewport.Height / 2;
+            brick3.X = GraphicsDevice.Viewport.Width / 2 - 150;
         }
 
         /// <summary>
@@ -282,82 +294,56 @@ namespace Pong
                 ball2.ChangeHorzDirection();
             }
 
-            //Collision with obstacle
-            if (ball.Boundary.Intersects(brick.Boundary))
-            {
-                //Moving to the top right-hand corner
-                if (ball.SpeedY < 0 && ball.SpeedX > 0)
-                {
-                    if (ball.X + ball.Boundary.Width < brick.Boundary.X)
-                        ball.ChangeVertDirection();
-                    else
-                        ball.ChangeHorzDirection();
-                }
-                //Moving to the top left-hand corner
-                else if (ball.SpeedY < 0 && ball.SpeedX < 0)
-                {
-                    if (ball.X < (brick.Boundary.X + brick.Boundary.Width))
-                        ball.ChangeHorzDirection();
-                    else
-                        ball.ChangeVertDirection();
-                }
-                //Moving to the bottom left-hand corner
-                else if (ball.SpeedY > 0 && ball.SpeedX < 0)
-                {
-                    if (ball.Boundary.X > (brick.Boundary.X + brick.Boundary.Width))
-                        ball.ChangeHorzDirection();
-                    else
-                        ball.ChangeVertDirection();
-                }
-                //Moving to the bottom right-hand corner
-                else if (ball.SpeedY > 0 && ball.SpeedX > 0)
-                {
-                    if (ball.Boundary.X + ball.Boundary.Width < brick.Boundary.X)
-                        ball.ChangeHorzDirection();
-                    else
-                        ball.ChangeVertDirection();
-                }
+            for (int j = 0; j < 2; j++) {
+               Ball temp = j == 0 ? ball : ball2;
 
-                brick.Reset(ref ball, GraphicsDevice);
-            }
+                //Collision with obstacle
+                Obstacle tempBrick = brick;
 
-            //Collision with obstacle - ball 2
-            if (ball2.Boundary.Intersects(brick.Boundary))
-            {
-                //Moving to the top right-hand corner
-                if (ball2.SpeedY < 0 && ball2.SpeedX > 0)
+                for (int i = 0; i < 3; i++)
                 {
-                    if (ball2.X + ball2.Boundary.Width < brick.Boundary.X)
-                        ball2.ChangeVertDirection();
-                    else
-                        ball2.ChangeHorzDirection();
-                }
-                //Moving to the top left-hand corner
-                else if (ball2.SpeedY < 0 && ball2.SpeedX < 0)
-                {
-                    if (ball2.X < (brick.Boundary.X + brick.Boundary.Width))
-                        ball2.ChangeHorzDirection();
-                    else
-                        ball2.ChangeVertDirection();
-                }
-                //Moving to the bottom left-hand corner
-                else if (ball2.SpeedY > 0 && ball2.SpeedX < 0)
-                {
-                    if (ball2.Boundary.X > (brick.Boundary.X + brick.Boundary.Width))
-                        ball2.ChangeHorzDirection();
-                    else
-                        ball2.ChangeVertDirection();
-                }
-                //Moving to the bottom right-hand corner
-                else if (ball2.SpeedY > 0 && ball2.SpeedX > 0)
-                {
-                    if (ball2.Boundary.X + ball2.Boundary.Width < brick.Boundary.X)
-                        ball2.ChangeHorzDirection();
-                    else
-                        ball2.ChangeVertDirection();
-                }
+                    if (i == 0) tempBrick = brick;
+                    else if (i == 1) tempBrick = brick2;
+                    else if (i == 2) tempBrick = brick3;
 
-                brick.Reset(ref ball, GraphicsDevice);
+                    if (temp.Boundary.Intersects(tempBrick.Boundary))
+                    {
+                        //Moving to the top right-hand corner
+                        if (temp.SpeedY < 0 && temp.SpeedX > 0)
+                        {
+                            if (temp.X + temp.Boundary.Width < tempBrick.Boundary.X)
+                                temp.ChangeVertDirection();
+                            else
+                                temp.ChangeHorzDirection();
+                        }
+                        //Moving to the top left-hand corner
+                        else if (temp.SpeedY < 0 && temp.SpeedX < 0)
+                        {
+                            if (temp.X < (tempBrick.Boundary.X + tempBrick.Boundary.Width))
+                                temp.ChangeHorzDirection();
+                            else
+                                temp.ChangeVertDirection();
+                        }
+                        //Moving to the bottom left-hand corner
+                        else if (temp.SpeedY > 0 && temp.SpeedX < 0)
+                        {
+                            if (temp.Boundary.X > (tempBrick.Boundary.X + tempBrick.Boundary.Width))
+                                temp.ChangeHorzDirection();
+                            else
+                                temp.ChangeVertDirection();
+                        }
+                        //Moving to the bottom right-hand corner
+                        else if (temp.SpeedY > 0 && temp.SpeedX > 0)
+                        {
+                            if (temp.Boundary.X + temp.Boundary.Width < tempBrick.Boundary.X)
+                                temp.ChangeHorzDirection();
+                            else
+                                temp.ChangeVertDirection();
+                        }
+
+                        tempBrick.Reset(ref ball, GraphicsDevice);
+                    }
+                }
             }
 
             // Collision with Paddle - Ball 1
@@ -386,7 +372,7 @@ namespace Pong
             if (ball.Boundary.Intersects(ball2.Boundary))
             {
                 // Enable Reflection
-
+                /*
                 // Calculate the Tangent
                 double radians = 0.0;
                 radians = Math.Atan2(ball.Y - ball2.Y, ball.X - ball2.X);
@@ -410,6 +396,43 @@ namespace Pong
                 ball.SpeedY *= (float)Math.Sin(bAngle);
                 ball2.SpeedX *= (float)Math.Cos(tAngle);
                 ball2.SpeedY *= (float)Math.Sin(tAngle);
+                */
+                for (int i = 0; i < 2; i++)
+                {
+                    Ball temp = i == 0 ? ball : ball2;
+                    //Moving to the top right-hand corner
+                    if (temp.SpeedY < 0 && temp.SpeedX > 0)
+                    {
+                        if (temp.X + temp.Boundary.Width < brick.Boundary.X)
+                            temp.ChangeVertDirection();
+                        else
+                            temp.ChangeHorzDirection();
+                    }
+                    //Moving to the top left-hand corner
+                    else if (temp.SpeedY < 0 && temp.SpeedX < 0)
+                    {
+                        if (temp.X < (brick.Boundary.X + brick.Boundary.Width))
+                            temp.ChangeHorzDirection();
+                        else
+                            temp.ChangeVertDirection();
+                    }
+                    //Moving to the bottom left-hand corner
+                    else if (temp.SpeedY > 0 && temp.SpeedX < 0)
+                    {
+                        if (temp.Boundary.X > (brick.Boundary.X + brick.Boundary.Width))
+                            temp.ChangeHorzDirection();
+                        else
+                            temp.ChangeVertDirection();
+                    }
+                    //Moving to the bottom right-hand corner
+                    else if (temp.SpeedY > 0 && temp.SpeedX > 0)
+                    {
+                        if (temp.Boundary.X + temp.Boundary.Width < brick.Boundary.X)
+                            temp.ChangeHorzDirection();
+                        else
+                            temp.ChangeVertDirection();
+                    }
+                }
             }
 
             base.Update(gameTime);
@@ -453,3 +476,4 @@ namespace Pong
         }
     }
 }
+             
