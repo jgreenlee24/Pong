@@ -21,8 +21,6 @@ G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\bin\x86\Debug\C
 G:\Harding University\COMP 475 Game Programming\MyPong\Pong\Pong\bin\x86\Debug\Content\Images\ball.xnb
 C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\obj\x86\Debug\Pong.exe
 C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\obj\x86\Debug\Pong.pdb
-C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\crash.xnb
-C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\swish.xnb
 C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\ball.xnb
 C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\computer_paddle.xnb
 C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\player_paddle.xnb
@@ -45,3 +43,21 @@ C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\f
 C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\pong.xnb
 C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\playerScore.xnb
 C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\score.xnb
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\fireball.xnb
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\pong.xnb
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\playerScore.xnb
+C:\Users\Tyler\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\score.xnb
+C:\Users\Lafflard\Desktop\Pong\Pong\Pong\bin\x86\Debug\Content\Images\ball.xnb
+C:\Users\Lafflard\Desktop\Pong\Pong\Pong\bin\x86\Debug\Content\Images\computer_paddle.xnb
+C:\Users\Lafflard\Desktop\Pong\Pong\Pong\bin\x86\Debug\Content\Images\player_paddle.xnb
+C:\Users\Lafflard\Desktop\Pong\Pong\Pong\bin\x86\Debug\Content\Images\fireball.xnb
+C:\Users\Lafflard\Desktop\Pong\Pong\Pong\bin\x86\Debug\Content\scoreFont.xnb
+C:\Users\Lafflard\Desktop\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\pong.xnb
+C:\Users\Lafflard\Desktop\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\playerScore.xnb
+C:\Users\Lafflard\Desktop\Pong\Pong\Pong\bin\x86\Debug\Content\Audio\score.xnb
+C:\Users\Lafflard\Desktop\Pong\Pong\Pong\bin\x86\Debug\Pong.exe
+C:\Users\Lafflard\Desktop\Pong\Pong\Pong\bin\x86\Debug\Pong.pdb
+C:\Users\Lafflard\Desktop\Pong\Pong\Pong\obj\x86\Debug\Pong.csprojResolveAssemblyReference.cache
+C:\Users\Lafflard\Desktop\Pong\Pong\Pong\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Lafflard\Desktop\Pong\Pong\Pong\obj\x86\Debug\Pong.exe
+C:\Users\Lafflard\Desktop\Pong\Pong\Pong\obj\x86\Debug\Pong.pdb
