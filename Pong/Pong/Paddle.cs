@@ -76,11 +76,10 @@ namespace Pong
             get
             {
                 bounds = new Rectangle((int)paddlePosition.X, (int)paddlePosition.Y,
-                    paddleSprite.Width, paddleSprite.Height - 10);
+                    paddleSprite.Width, paddleSprite.Height);
                 return bounds;
             }
         }
-
 
         #endregion
         #region Code
@@ -107,7 +106,7 @@ namespace Pong
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
             paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\hand");
         }
 
@@ -116,7 +115,7 @@ namespace Pong
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(GameTime gameTime)
-        {           
+        {
             spriteBatch.Begin();
             spriteBatch.Draw(paddleSprite, paddlePosition, Color.White);
 

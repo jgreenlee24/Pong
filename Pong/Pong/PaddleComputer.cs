@@ -15,10 +15,11 @@ namespace Pong
     {
         #region Private Members
         public Ball ball;
+        public Ball ball2;
         #endregion
         public PaddleComputer(Game game)
             : base(game)
-        {}
+        { }
 
         #region Code
         /// <summary>
@@ -42,11 +43,19 @@ namespace Pong
             float moveDistance = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             // Move paddle, but don't allow movement off the screen
-            if (ball.X < X && X > 0)
+            if (ball.X < X && X > 0 && ball.Y - Y < ball2.Y - Y)
             {
                 X -= moveDistance;
             }
-            else if (ball.X > X && X < (GraphicsDevice.Viewport.Width - Width))
+            else if (ball.X > X && X < (GraphicsDevice.Viewport.Width - Width) && ball.Y - Y < ball2.Y - Y)
+            {
+                X += moveDistance;
+            }
+            else if (ball2.X < X && X > 0 && ball.Y - Y > ball2.Y - Y)
+            {
+                X -= moveDistance;
+            }
+            else if (ball2.X > X && X < (GraphicsDevice.Viewport.Width - Width) && ball.Y - Y > ball2.Y - Y)
             {
                 X += moveDistance;
             }

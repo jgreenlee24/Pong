@@ -29,6 +29,7 @@ namespace Pong
         private GraphicsDeviceManager graphics;
 
         private Ball ball;
+        private Ball ball2;
         private PaddleHuman paddle;
         private PaddleComputer comp_paddle;
         private Obstacle brick;
@@ -61,15 +62,18 @@ namespace Pong
             Content.RootDirectory = "Content";
 
             ball = new Ball(this);
+            ball2 = new Ball(this);
             paddle = new PaddleHuman(this);
             comp_paddle = new PaddleComputer(this);
             brick = new Obstacle(this);
 
             Components.Add(ball);
+            Components.Add(ball2);
             Components.Add(paddle);
             Components.Add(comp_paddle);
             Components.Add(brick);
             comp_paddle.ball = Components[0] as Ball;
+            comp_paddle.ball2 = Components[1] as Ball;
 
             // Call Window_ClientSizeChanged when screen size is changed
             this.Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
@@ -106,7 +110,9 @@ namespace Pong
 
             // Initialize ball position
             ball.X = GraphicsDevice.Viewport.Width / 2 - ball.Width / 2;
-            ball.Y = GraphicsDevice.Viewport.Height / 2 - ball.Height / 2;
+            ball.Y = GraphicsDevice.Viewport.Height / 2 - ball.Height / 2 + 100;
+            ball2.X = GraphicsDevice.Viewport.Width / 2 - ball2.Width / 2;
+            ball2.Y = GraphicsDevice.Viewport.Height / 2 - ball2.Height / 2 - 100;
 
             // Randomly select ball direction and speed
 
@@ -183,12 +189,36 @@ namespace Pong
                 ball.SpeedY = 0;
             }
 
+            // Fortify Collision Detection
+            if (ball.SpeedX == 0 && ball.SpeedY == 0)
+            {
+                ball.SpeedX = ball.X < ball2.X ? -20 : 20;
+                ball.SpeedY = ball.Y < ball2.Y ? -20 : 20;
+                ball2.SpeedX = ball.SpeedX * -1;
+                ball2.SpeedY = ball.SpeedY * -1;
+            }
+
             // Enable wireframing
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                     paddle.wireframe = true;
                     comp_paddle.wireframe = true;
                     ball.wireframe = true;
+            }
+
+            // New game - press 'n'
+            if (Keyboard.GetState().IsKeyDown(Keys.N))
+            {
+                myScore = 0;
+                computerScore = 0;
+                ball.Reset();
+                ball2.Reset();
+
+                // Initialize ball position
+                ball.X = GraphicsDevice.Viewport.Width / 2 - ball.Width / 2;
+                ball.Y = GraphicsDevice.Viewport.Height / 2 - ball.Height / 2 + 100;
+                ball2.X = GraphicsDevice.Viewport.Width / 2 - ball2.Width / 2;
+                ball2.Y = GraphicsDevice.Viewport.Height / 2 - ball2.Height / 2 - 100;
             }
 
             // Disable mouse visibility - enable mouse-control
@@ -230,15 +260,27 @@ namespace Pong
                 // Score! - reset ball
                 ball.Reset();
 
+                if (ball.Y < 0 || ball.Y > maxY)
+                {
+                    // Score! - reset ball
+                    ball.Reset();
+                }
+                else ball2.Reset();
+
                 // Reset timer and stop ball's Update() from executing
                 delayTimer = 0;
-                ball.Enabled = false;
             }
 
-            // Collision with Wall
+            // Collision with Wall - Ball 1
             if (ball.X < 0 || ball.X > maxX)
             {
                 ball.ChangeHorzDirection();
+            }
+
+            // Collision with Wall - Ball 2
+            if (ball2.X < 0 || ball2.X > maxX)
+            {
+                ball2.ChangeHorzDirection();
             }
 
             //Collision with obstacle
@@ -281,29 +323,56 @@ namespace Pong
             }
 
 
-            // Collision with Paddle
+            // Collision with Paddle - Ball 1
             if (ball.Boundary.Intersects(paddle.Boundary) && ball.SpeedY > 0 ||
                 ball.Boundary.Intersects(comp_paddle.Boundary) && ball.SpeedY < 0)
             {
                 pongSound.Play();
 
-                // Enable Reflection
-                float ballMiddle = (ball.X + ball.Width) / 2;
-                float paddleMiddle = (paddle.X + paddle.Width) / 2;
-                float compMiddle = (comp_paddle.X + comp_paddle.Y) / 2;
-                if ((ballMiddle < paddleMiddle && ball.SpeedX > 0) ||
-                    (ballMiddle > paddleMiddle && ball.SpeedX < 0) ||
-                    (ballMiddle < compMiddle && ball.SpeedX > 0) ||
-                    (ballMiddle > compMiddle && ball.SpeedX < 0))
-                {
-                    //ball.ChangeHorzDirection();
-                    //ball.SpeedY *= -1;
-                    ball.SpeedX *= 1;
-                }
-                
                 // Redirect ball vertically - collided with paddle
                 ball.ChangeVertDirection();
                 ball.SpeedUp();
+            }
+
+            // Collision with Paddle - Ball 2
+            if (ball2.Boundary.Intersects(paddle.Boundary) && ball2.SpeedY > 0 ||
+                ball2.Boundary.Intersects(comp_paddle.Boundary) && ball2.SpeedY < 0)
+            {
+                pongSound.Play();
+
+                // Redirect ball vertically - collided with paddle
+                ball2.ChangeVertDirection();
+                ball2.SpeedUp();
+            }
+
+            // Collision with Ball - loop through Ball Array
+            if (ball.Boundary.Intersects(ball2.Boundary))
+            {
+                // Enable Reflection
+
+                // Calculate the Tangent
+                double radians = 0.0;
+                radians = Math.Atan2(ball.Y - ball2.Y, ball.X - ball2.X);
+                float tangent = (float)radians * 180 / (float)Math.PI;
+
+                // Calculate the Original Angles
+                double ballAngle1, ballAngle2;
+                ballAngle1 = Math.Atan2(ball.SpeedX, ball.SpeedX);
+                ballAngle2 = Math.Atan2(ball2.SpeedY, ball2.SpeedX);
+                float degrees1, degrees2;
+                degrees1 = (float)ballAngle1 * 180 / (float)Math.PI;
+                degrees2 = (float)ballAngle2 * 180 / (float)Math.PI;
+
+                // Calculate the New Angles
+                float botAngle = ball.Y > ball2.Y ? degrees2 : degrees1;
+                float topAngle = ball.Y > ball2.Y ? degrees1 : degrees2;
+                float bAngle = Math.Abs(tangent - botAngle) * -1;
+                float tAngle = Math.Abs(tangent - topAngle) * -1;
+
+                ball.SpeedX *= (float)Math.Cos(bAngle);
+                ball.SpeedY *= (float)Math.Sin(bAngle);
+                ball2.SpeedX *= (float)Math.Cos(tAngle);
+                ball2.SpeedY *= (float)Math.Sin(tAngle);
             }
 
             base.Update(gameTime);
