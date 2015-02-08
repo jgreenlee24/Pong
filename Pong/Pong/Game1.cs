@@ -244,10 +244,10 @@ namespace Pong
             int maxY = GraphicsDevice.Viewport.Height - ball.Height;
 
             // Score! Reset Ball and Timer
-            if (ball.Y < 0 || ball.Y > maxY)
+            if (ball.Y < 0 || ball.Y > maxY || ball2.Y < 0 || ball2.Y > maxY)
             {
                 //Increment the score accordingly
-                if (ball.Y < 0)
+                if (ball.Y < 0 || ball2.Y < 0)
                 {
                     myScore++;
                     scoreSound.Play();
@@ -257,8 +257,6 @@ namespace Pong
                     computerScore++;
                     compScoreSound.Play();
                 }
-                // Score! - reset ball
-                ball.Reset();
 
                 if (ball.Y < 0 || ball.Y > maxY)
                 {
@@ -269,6 +267,7 @@ namespace Pong
 
                 // Reset timer and stop ball's Update() from executing
                 delayTimer = 0;
+                //ball.Enabled = false;
             }
 
             // Collision with Wall - Ball 1
@@ -322,6 +321,44 @@ namespace Pong
                 brick.Reset(ref ball, GraphicsDevice);
             }
 
+            //Collision with obstacle - ball 2
+            if (ball2.Boundary.Intersects(brick.Boundary))
+            {
+                //Moving to the top right-hand corner
+                if (ball2.SpeedY < 0 && ball2.SpeedX > 0)
+                {
+                    if (ball2.X + ball2.Boundary.Width < brick.Boundary.X)
+                        ball2.ChangeVertDirection();
+                    else
+                        ball2.ChangeHorzDirection();
+                }
+                //Moving to the top left-hand corner
+                else if (ball2.SpeedY < 0 && ball2.SpeedX < 0)
+                {
+                    if (ball2.X < (brick.Boundary.X + brick.Boundary.Width))
+                        ball2.ChangeHorzDirection();
+                    else
+                        ball2.ChangeVertDirection();
+                }
+                //Moving to the bottom left-hand corner
+                else if (ball2.SpeedY > 0 && ball2.SpeedX < 0)
+                {
+                    if (ball2.Boundary.X > (brick.Boundary.X + brick.Boundary.Width))
+                        ball2.ChangeHorzDirection();
+                    else
+                        ball2.ChangeVertDirection();
+                }
+                //Moving to the bottom right-hand corner
+                else if (ball2.SpeedY > 0 && ball2.SpeedX > 0)
+                {
+                    if (ball2.Boundary.X + ball2.Boundary.Width < brick.Boundary.X)
+                        ball2.ChangeHorzDirection();
+                    else
+                        ball2.ChangeVertDirection();
+                }
+
+                brick.Reset(ref ball, GraphicsDevice);
+            }
 
             // Collision with Paddle - Ball 1
             if (ball.Boundary.Intersects(paddle.Boundary) && ball.SpeedY > 0 ||

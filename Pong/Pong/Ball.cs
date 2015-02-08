@@ -206,7 +206,7 @@ namespace Pong
 
             sourceRec.X = Width * (frame % 6);
             sourceRec.Y = Height * (frame / 6);
-            
+
             base.Update(gameTime);
         }
 
@@ -238,4 +238,3 @@ namespace Pong
         }
     }
 }
-  
