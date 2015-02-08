@@ -155,6 +155,13 @@ namespace Pong
                 ball.SpeedY = 0;
             }
 
+            // Enable wireframing
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                    paddle.wireframe = true;
+                    comp_paddle.wireframe = true;
+            }
+
             // Disable mouse visibility - enable mouse-control
             if (Keyboard.GetState().IsKeyDown(Keys.M))
             {

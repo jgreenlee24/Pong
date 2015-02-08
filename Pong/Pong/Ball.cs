@@ -89,7 +89,7 @@ namespace Pong
         /// </summary>
         public int Width
         {
-            get { return ballSprite.Width; }
+            get { return ballSprite.Width / 12; }
         }
 
         /// <summary>
@@ -97,14 +97,15 @@ namespace Pong
         /// </summary>
         public int Height
         {
-            get { return ballSprite.Height; }
+            get { return ballSprite.Height / 2; }
         }
 
-        public BoundingSphere Boundary
+        public Rectangle Boundary
         {
             get
             {
-                return new BoundingSphere(new Vector3((int)ballPosition.X, (int)ballPosition.Y, 0), (float)ballSprite.Height / 2);
+                return new Rectangle((int)ballPosition.X, (int)ballPosition.Y,
+                    ballSprite.Width - 20, ballSprite.Height - 35);
             }
         }
 
@@ -200,8 +201,8 @@ namespace Pong
             if (frame == 12) frame = 0;
             else frame++;
 
-            sourceRec.X = (384 / 12) * (frame % 6);
-            sourceRec.Y = (64 / 2) * (frame / 6);
+            sourceRec.X = Width * (frame % 6);
+            sourceRec.Y = Height * (frame / 6);
             
             base.Update(gameTime);
         }
@@ -215,19 +216,7 @@ namespace Pong
             base.Draw(gameTime);
 
             spriteBatch.Begin();
-
-            // show boundary - press 'b'
-
             spriteBatch.Draw(ballSprite, ballPosition, sourceRec, Color.White);
-            Texture2D SimpleTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-
-            // Creates a texture used as a background color
-            Int32[] pixel = { 0xFFFFFF }; // White. 0xFF is Red, 0xFF0000 is Blue
-            SimpleTexture.SetData<Int32>(pixel, 0, SimpleTexture.Width * SimpleTexture.Height);
-
-            // Paint a 100x1 line starting at 20, 50
-            this.spriteBatch.Draw(SimpleTexture, new Rectangle(20, 50, 100, 1), Color.Green);
-            
             spriteBatch.End();
         }
     }

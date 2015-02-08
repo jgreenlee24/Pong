@@ -35,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\computer_paddle.xnb</Output>
-      <Time>2015-02-02T14:00:49.1553608-08:00</Time>
+      <Time>2015-01-28T17:59:33.1247314-08:00</Time>
     </Item>
     <Item>
       <Source>Images\player_paddle.png</Source>
@@ -44,7 +44,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\player_paddle.xnb</Output>
-      <Time>2015-02-02T14:00:49.156374-08:00</Time>
+      <Time>2015-01-28T17:41:15.0170494-08:00</Time>
     </Item>
     <Item>
       <Source>scoreFont.spritefont</Source>

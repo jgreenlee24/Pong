@@ -20,12 +20,11 @@ namespace Pong
         #region protected Members
         protected SpriteBatch spriteBatch;
         protected ContentManager contentManager;
-
-        // Paddle sprite
         protected Texture2D paddleSprite;
-
-        // Paddle location
         protected Vector2 paddlePosition;
+        Rectangle bounds;
+
+        public bool wireframe = false;
 
         protected const float DEFAULT_X_SPEED = 250;
 
@@ -71,14 +70,17 @@ namespace Pong
         /// <summary>
         /// Gets the bounding rectangle of the paddle.
         /// </summary>
-        public BoundingSphere Boundary
+        ///         
+        public Rectangle Boundary
         {
             get
             {
-                return new BoundingSphere(new Vector3((int)paddlePosition.X, (int)paddlePosition.Y, 0), (float)paddleSprite.Height / 2);
-                //return new Rectangle((int)paddlePosition.X, (int)paddlePosition.Y, paddleSprite.Width, paddleSprite.Height);
+                bounds = new Rectangle((int)paddlePosition.X, (int)paddlePosition.Y,
+                    paddleSprite.Width, paddleSprite.Height);
+                return bounds;
             }
         }
+
 
         #endregion
         #region Code
@@ -117,6 +119,20 @@ namespace Pong
         {           
             spriteBatch.Begin();
             spriteBatch.Draw(paddleSprite, paddlePosition, Color.White);
+
+            Texture2D SimpleTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+
+            Int32[] pixel = { 0xFFFFFF }; // White. 0xFF is Red, 0xFF0000 is Blue
+            SimpleTexture.SetData<Int32>(pixel, 0, SimpleTexture.Width * SimpleTexture.Height);
+
+            if (wireframe)
+            {
+                Color color = Color.White;
+                spriteBatch.Draw(SimpleTexture, new Rectangle(bounds.Left, bounds.Top, bounds.Width, 1), color);
+                spriteBatch.Draw(SimpleTexture, new Rectangle(bounds.Left, bounds.Bottom, bounds.Width, 1), color);
+                spriteBatch.Draw(SimpleTexture, new Rectangle(bounds.Left, bounds.Top, 1, bounds.Height), color);
+                spriteBatch.Draw(SimpleTexture, new Rectangle(bounds.Right, bounds.Top, 1, bounds.Height + 1), color);
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);
