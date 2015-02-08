@@ -100,18 +100,6 @@ namespace Pong
             get { return ballSprite.Height; }
         }
 
-        /// <summary>
-        /// Gets the bounding rectangle of the 
-        /// </summary>
-        public Rectangle Boundary2
-        {
-            get
-            {
-                return new Rectangle((int)ballPosition.X, (int)ballPosition.Y,
-                    ballSprite.Width, ballSprite.Height);
-            }
-        }
-
         public BoundingSphere Boundary
         {
             get
@@ -227,6 +215,12 @@ namespace Pong
             base.Draw(gameTime);
 
             spriteBatch.Begin();
+
+            // show boundary - press 'b'
+            RasterizerState state = new RasterizerState();
+            state.FillMode = FillMode.WireFrame;
+            spriteBatch.GraphicsDevice.RasterizerState = state;
+
             spriteBatch.Draw(ballSprite, ballPosition, sourceRec, Color.White);
             
             spriteBatch.End();

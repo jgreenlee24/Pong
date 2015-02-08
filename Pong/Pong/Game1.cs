@@ -78,10 +78,8 @@ namespace Pong
         /// </summary>
         protected override void Initialize()
         {
-            // Make mouse visible
+            // Initialize local variables
             IsMouseVisible = true;
-
-            //Reset the score to 0-0
             playerScore = 0;
             computerScore = 0;
 
@@ -138,6 +136,13 @@ namespace Pong
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
+            // Disable mouse visibility - enable mouse-control
+            if (Keyboard.GetState().IsKeyDown(Keys.M))
+            {
+                if (IsMouseVisible) IsMouseVisible = false;
+                else IsMouseVisible = true;
+            }
+
             // Press F to toggle full-screen mode
             if (Keyboard.GetState().IsKeyDown(Keys.F))
             {
@@ -157,17 +162,8 @@ namespace Pong
             if (ball.Y < 0 || ball.Y > maxY)
             {
                 //Increment the score accordingly
-                if (ball.Y < 0)
-                {
-                    playerScore++;
-                }
-                else
-                {
-                    computerScore++;
-                }
-
-                //Update the current scores to the screen
-
+                if (ball.Y < 0) playerScore++;
+                else computerScore++;
 
                 // Score! - reset ball
                 ball.Reset();

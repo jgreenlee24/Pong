@@ -18,7 +18,12 @@ namespace Pong
             : base(game)
         {
         }
-        #region Code
+        #region Private Variables
+        private bool mouseControl = false;
+        private MouseState ms = Mouse.GetState();
+        #endregion
+
+        #region Methods
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -39,8 +44,28 @@ namespace Pong
             // Scale the movement based on time
             float moveDistance = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            // Move paddle, but don't allow movement off the screen
+            // Press M to toggle mouse-control / keyboard-control
+            if (Keyboard.GetState().IsKeyDown(Keys.M))
+            {
+                mouseControl = true;
+            }
 
+            // mouse-control
+            if (mouseControl == true)
+            {
+                ms = Mouse.GetState();
+                if (X > ms.X)
+                {
+                    X -= moveDistance;
+                }
+                else if (X < ms.X)
+                {
+                    X += moveDistance;
+                }
+            }
+
+
+            // keyboard-control
             KeyboardState newKeyState = Keyboard.GetState();
             if (newKeyState.IsKeyDown(Keys.Left) && X - moveDistance >= 0 )
             {
