@@ -4,5 +4,4 @@ Content\Images\ball.xnb
 Content\Images\computer_paddle.xnb
 Content\Images\player_paddle.xnb
 Content\scoreFont.xnb
-Content\Images\magicball.xnb
 Content\Images\fireball.xnb

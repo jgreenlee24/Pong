@@ -32,6 +32,7 @@ namespace Pong
         private PaddleHuman paddle;
         private PaddleComputer comp_paddle;
         private SpriteBatch spriteBatch;
+        private bool paused = false;
 
         //Keep track of the player and computer scores
         private int playerScore;
@@ -131,10 +132,28 @@ namespace Pong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-                Keyboard.GetState().IsKeyDown(Keys.Escape))
-                this.Exit();
+            // Pause game and display credits
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                if (paused == false)
+                {
+                    paused = true;
+                    
+                    // Display credits
+
+                }
+                else
+                {
+                    paused = false;
+                }
+            }
+            if (paused)
+            {
+                paddle.Speed = 0;
+                comp_paddle.Speed = 0;
+                ball.SpeedX = 0;
+                ball.SpeedY = 0;
+            }
 
             // Disable mouse visibility - enable mouse-control
             if (Keyboard.GetState().IsKeyDown(Keys.M))
@@ -211,6 +230,14 @@ namespace Pong
         private void DrawText()
         {   
             spriteBatch.DrawString(font, "Player: " + playerScore.ToString() + "\nComputer: " + computerScore.ToString(), new Vector2(10, 10), Color.White);
+        }
+
+        /// <summary>
+        /// Draws the player/computer score to the window
+        /// </summary>
+        private void DrawCredits()
+        {
+            
         }
 
         /// <summary>

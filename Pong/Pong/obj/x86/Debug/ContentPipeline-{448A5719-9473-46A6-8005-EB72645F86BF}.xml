@@ -56,15 +56,6 @@
       <Time>2015-02-02T14:00:49.1663769-08:00</Time>
     </Item>
     <Item>
-      <Source>Images\magicball.png</Source>
-      <Name>Images\magicball</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\magicball.xnb</Output>
-      <Time>2015-02-02T14:12:08.6629496-08:00</Time>
-    </Item>
-    <Item>
       <Source>Images\fireball.png</Source>
       <Name>Images\fireball</Name>
       <Importer>TextureImporter</Importer>

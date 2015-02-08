@@ -43,5 +43,4 @@ C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\obj\x86\Debug\Pong.csprojResol
 C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\obj\x86\Debug\Pong.exe
 C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\obj\x86\Debug\Pong.pdb
-C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\magicball.xnb
 C:\Users\Lafflard\Documents\GitHub\Pong\Pong\Pong\bin\x86\Debug\Content\Images\fireball.xnb

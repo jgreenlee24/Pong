@@ -217,11 +217,16 @@ namespace Pong
             spriteBatch.Begin();
 
             // show boundary - press 'b'
-            RasterizerState state = new RasterizerState();
-            state.FillMode = FillMode.WireFrame;
-            spriteBatch.GraphicsDevice.RasterizerState = state;
 
             spriteBatch.Draw(ballSprite, ballPosition, sourceRec, Color.White);
+            Texture2D SimpleTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+
+            // Creates a texture used as a background color
+            Int32[] pixel = { 0xFFFFFF }; // White. 0xFF is Red, 0xFF0000 is Blue
+            SimpleTexture.SetData<Int32>(pixel, 0, SimpleTexture.Width * SimpleTexture.Height);
+
+            // Paint a 100x1 line starting at 20, 50
+            this.spriteBatch.Draw(SimpleTexture, new Rectangle(20, 50, 100, 1), Color.Green);
             
             spriteBatch.End();
         }
