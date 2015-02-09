@@ -94,7 +94,7 @@ namespace Pong
             computerScore = 0;
 
             // Set the window's title bar
-            Window.Title = "Basketball Pong!";
+            Window.Title = "NOPE Pong!";
 
             graphics.ApplyChanges();
 
@@ -250,7 +250,9 @@ namespace Pong
                     (ballMiddle < compMiddle && ball.SpeedX > 0) ||
                     (ballMiddle > compMiddle && ball.SpeedX < 0))
                 {
-                    ball.ChangeHorzDirection();
+                    //ball.ChangeHorzDirection();
+                    //ball.SpeedY *= -1;
+                    ball.SpeedX *= 1;
                 }
                 
                 // Redirect ball vertically - collided with paddle
