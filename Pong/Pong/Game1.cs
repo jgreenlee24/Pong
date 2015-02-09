@@ -41,6 +41,7 @@ namespace Pong
         private SpriteBatch credits;
         private bool paused = false;
         private bool pauseKeyDown = false;
+        private bool collision = false;
 
         //Used to keep track when paused
         private float paddleSpeed;
@@ -193,6 +194,11 @@ namespace Pong
                 // Display credits
             }
 
+            if (myScore >= 20 || computerScore >= 20)
+            {
+                paused = true;
+            }
+
             if (paused)
             {
                 paddle.Speed = 0;
@@ -204,11 +210,21 @@ namespace Pong
             // Fortify Collision Detection
             if (ball.SpeedX == 0 && ball.SpeedY == 0)
             {
-                ball.SpeedX = ball.X < ball2.X ? -20 : 20;
-                ball.SpeedY = ball.Y < ball2.Y ? -20 : 20;
+                ball.SpeedX = ball.X < ball2.X ? -50 : 50;
+                ball.SpeedY = ball.Y < ball2.Y ? -50 : 50;
                 ball2.SpeedX = ball.SpeedX * -1;
                 ball2.SpeedY = ball.SpeedY * -1;
             }
+            if (ball.Boundary.Intersects(ball2.Boundary) && collision == true)
+            {                
+                // if they're going different directions    
+                ball.SpeedX = ball.X < ball2.X ? -50 : 50;
+                ball.SpeedY = ball.Y < ball2.Y ? -50 : 50;
+                ball2.SpeedX = ball.SpeedX * -1;
+                ball2.SpeedY = ball.SpeedY * -1;
+                collision = false;
+            }
+            else if (collision == true) collision = false;
 
             // Enable wireframing
             if (Keyboard.GetState().IsKeyDown(Keys.W))
@@ -221,6 +237,7 @@ namespace Pong
             // New game - press 'n'
             if (Keyboard.GetState().IsKeyDown(Keys.N))
             {
+                paused = false;
                 myScore = 0;
                 computerScore = 0;
                 ball.Reset();
@@ -258,18 +275,20 @@ namespace Pong
             // Score! Reset Ball and Timer
             if (ball.Y < 0 || ball.Y > maxY || ball2.Y < 0 || ball2.Y > maxY)
             {
-                //Increment the score accordingly
-                if (ball.Y < 0 || ball2.Y < 0)
+                if (!paused)
                 {
-                    myScore++;
-                    scoreSound.Play();
+                    //Increment the score accordingly
+                    if (ball.Y < 0 || ball2.Y < 0 && !paused)
+                    {
+                        myScore++;
+                        scoreSound.Play();
+                    }
+                    else
+                    {
+                        computerScore++;
+                        compScoreSound.Play();
+                    }
                 }
-                else
-                {
-                    computerScore++;
-                    compScoreSound.Play();
-                }
-
                 if (ball.Y < 0 || ball.Y > maxY)
                 {
                     // Score! - reset ball
@@ -312,22 +331,22 @@ namespace Pong
                         if (temp.SpeedY < 0 && temp.SpeedX > 0)
                         {
                             if (temp.X + temp.Boundary.Width < tempBrick.Boundary.X)
-                                temp.ChangeVertDirection();
-                            else
                                 temp.ChangeHorzDirection();
+                            else
+                                temp.ChangeVertDirection();
                         }
                         //Moving to the top left-hand corner
                         else if (temp.SpeedY < 0 && temp.SpeedX < 0)
                         {
-                            if (temp.X < (tempBrick.Boundary.X + tempBrick.Boundary.Width))
-                                temp.ChangeHorzDirection();
-                            else
+                            if (temp.X < (tempBrick.Boundary.X + tempBrick.Boundary.Width - 5))
                                 temp.ChangeVertDirection();
+                            else
+                                temp.ChangeHorzDirection();    
                         }
                         //Moving to the bottom left-hand corner
                         else if (temp.SpeedY > 0 && temp.SpeedX < 0)
                         {
-                            if (temp.Boundary.X > (tempBrick.Boundary.X + tempBrick.Boundary.Width))
+                            if (temp.Boundary.X > (tempBrick.Boundary.X + tempBrick.Boundary.Width - 5))
                                 temp.ChangeHorzDirection();
                             else
                                 temp.ChangeVertDirection();
@@ -350,7 +369,7 @@ namespace Pong
             if (ball.Boundary.Intersects(paddle.Boundary) && ball.SpeedY > 0 ||
                 ball.Boundary.Intersects(comp_paddle.Boundary) && ball.SpeedY < 0)
             {
-                pongSound.Play();
+                if (!paused) pongSound.Play();
 
                 // Redirect ball vertically - collided with paddle
                 ball.ChangeVertDirection();
@@ -397,6 +416,10 @@ namespace Pong
                 ball2.SpeedX *= (float)Math.Cos(tAngle);
                 ball2.SpeedY *= (float)Math.Sin(tAngle);
                 */
+                collision = true;
+
+
+                // Change directions
                 for (int i = 0; i < 2; i++)
                 {
                     Ball temp = i == 0 ? ball : ball2;
