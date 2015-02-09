@@ -31,8 +31,16 @@ namespace Pong
         private Ball ball;
         private PaddleHuman paddle;
         private PaddleComputer comp_paddle;
-        private SpriteBatch spriteBatch;
+        private SpriteBatch scoreRecord;
+        private SpriteBatch credits;
         private bool paused = false;
+        private bool pauseKeyDown = false;
+
+        //Used to keep track when paused
+        private float paddleSpeed;
+        private float compSpeed;
+        private float ballSpeedX;
+        private float ballSpeedY;
 
         //Keep track of the player and computer scores
         private int playerScore;
@@ -110,7 +118,8 @@ namespace Pong
         /// </summary>
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            scoreRecord = new SpriteBatch(GraphicsDevice);
+            credits = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("scoreFont");
             swishSound = Content.Load<SoundEffect>(@"Audio\swish");
             crashSound = Content.Load<SoundEffect>(@"Audio\crash");
@@ -135,18 +144,30 @@ namespace Pong
             // Pause game and display credits
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-                if (paused == false)
+                if (pauseKeyDown && paused)
                 {
-                    paused = true;
-                    
-                    // Display credits
+                    pauseKeyDown = false;
+                    paused = false;
 
+                    paddle.Speed = paddleSpeed;
+                    comp_paddle.Speed = compSpeed;
+                    ball.SpeedX = ballSpeedX;
+                    ball.SpeedY = ballSpeedY;
                 }
                 else
                 {
-                    paused = false;
+                    paused = true;
+                    pauseKeyDown = true;
+
+                    paddleSpeed = paddle.Speed;
+                    compSpeed = comp_paddle.Speed;
+                    ballSpeedX = ball.SpeedX;
+                    ballSpeedY = ball.SpeedY;
                 }
+                    
+                // Display credits
             }
+
             if (paused)
             {
                 paddle.Speed = 0;
@@ -229,7 +250,7 @@ namespace Pong
         /// </summary>
         private void DrawText()
         {   
-            spriteBatch.DrawString(font, "Player: " + playerScore.ToString() + "\nComputer: " + computerScore.ToString(), new Vector2(10, 10), Color.White);
+            scoreRecord.DrawString(font, "Player: " + playerScore.ToString() + "\nComputer: " + computerScore.ToString(), new Vector2(10, 10), Color.White);
         }
 
         /// <summary>
@@ -237,7 +258,7 @@ namespace Pong
         /// </summary>
         private void DrawCredits()
         {
-            
+            credits.DrawString(font, "   Created By:\n   Tyler Apgar\n           &\nJustin Greenlee", new Vector2((GraphicsDevice.Viewport.Width / 2) - 40, (GraphicsDevice.Viewport.Height / 2) - 40), Color.White);
         }
 
         /// <summary>
@@ -246,10 +267,17 @@ namespace Pong
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            spriteBatch.Begin();
+            scoreRecord.Begin();
             GraphicsDevice.Clear(Color.Black);
             DrawText();
-            spriteBatch.End();
+            scoreRecord.End();
+
+            if (paused)
+            {
+                credits.Begin();
+                DrawCredits();
+                credits.End();
+            }
             
             base.Draw(gameTime);
         }
