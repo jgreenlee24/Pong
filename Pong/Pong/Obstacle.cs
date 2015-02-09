@@ -80,14 +80,31 @@ namespace Pong
         {
             contentManager = new ContentManager(game.Services);
         }
-        public void Reset()
+        public void Reset(ref Ball ball, GraphicsDevice window)
         {
             //Randomly choose a new location
             Random rand = new Random();
-            //float 
+            int minY = 36 + 50;
+            int maxY = window.Viewport.Height - (36 + 50);
+            int minX = 0;
+            int maxX = window.Viewport.Width - obstacleSprite.Width;
+            
+            int x = rand.Next(minX, maxX);
+            int y = rand.Next(minY, maxY);
+            Rectangle buffer = new Rectangle(ball.Boundary.X - 50, ball.Boundary.Y - 50, ball.Boundary.Width + 50, ball.Boundary.Height + 50);
+            Rectangle newPos = new Rectangle(x, y, obstacleSprite.Width, obstacleSprite.Height);
 
-            obstaclePosition.Y = GraphicsDevice.Viewport.Height + 50;
-            obstaclePosition.X = GraphicsDevice.Viewport.Width + 50;
+            while (buffer.Intersects(newPos))
+            {
+                x = rand.Next(minX, maxX);
+                y = rand.Next(minY, maxY);
+
+                newPos.X = x;
+                newPos.Y = y;
+            }
+
+            obstaclePosition.X = newPos.X;
+            obstaclePosition.Y = newPos.Y;
         }
 
         /// <summary>

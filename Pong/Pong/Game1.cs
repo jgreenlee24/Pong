@@ -277,7 +277,7 @@ namespace Pong
                         ball.ChangeVertDirection();
                 }
 
-                brick.Reset();
+                brick.Reset(ref ball, GraphicsDevice);
             }
 
 
