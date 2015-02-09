@@ -237,11 +237,14 @@ namespace Pong
             // New game - press 'n'
             if (Keyboard.GetState().IsKeyDown(Keys.N))
             {
-                paused = false;
                 myScore = 0;
                 computerScore = 0;
+                paused = false;
                 ball.Reset();
                 ball2.Reset();
+                paddle.Speed = 200;
+                comp_paddle.Speed = 200;
+
 
                 // Initialize ball position
                 ball.X = GraphicsDevice.Viewport.Width / 2 - ball.Width / 2;
@@ -380,7 +383,7 @@ namespace Pong
             if (ball2.Boundary.Intersects(paddle.Boundary) && ball2.SpeedY > 0 ||
                 ball2.Boundary.Intersects(comp_paddle.Boundary) && ball2.SpeedY < 0)
             {
-                pongSound.Play();
+                if (!paused) pongSound.Play();
 
                 // Redirect ball vertically - collided with paddle
                 ball2.ChangeVertDirection();
@@ -455,6 +458,9 @@ namespace Pong
                         else
                             temp.ChangeVertDirection();
                     }
+
+                    ball.SpeedUp();
+                    ball2.SpeedUp();
                 }
             }
 
